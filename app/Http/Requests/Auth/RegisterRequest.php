@@ -62,7 +62,7 @@ class RegisterRequest extends FormRequest
         ];
     }
 
-    public function payload(): NewUserDTO
+    public function toDTO(): NewUserDTO
     {
         return NewUserDTO::fromRequest(
             data: [

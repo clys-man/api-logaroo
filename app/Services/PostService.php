@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Services;
 
+use App\Http\DTO\Posts\NewPostDTO;
+use App\Models\Post;
 use App\Queries\Posts\SearchPostsByTagName;
 use App\Repositories\Post\PostRepositoryInterface;
 use Illuminate\Contracts\Pagination\Paginator;
@@ -29,5 +31,12 @@ final readonly class PostService
                 }
             }
         );
+    }
+
+    public function create(NewPostDTO $newPostDTO): Post
+    {
+        $post = $this->repository->create($newPostDTO);
+
+        return $post;
     }
 }

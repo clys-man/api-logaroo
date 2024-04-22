@@ -16,10 +16,10 @@ use Illuminate\Http\Request;
 final readonly class IndexPostController
 {
     /**
-     * @param User $auth
+     * @param PostService $service
      * */
     public function __construct(
-        private readonly PostService $postService
+        private readonly PostService $service
     ) {
     }
 
@@ -29,7 +29,7 @@ final readonly class IndexPostController
 
         return new CollectionResponse(
             data: PostResource::collection(
-                $this->postService->paginate($tagName)
+                $this->service->paginate($tagName)
             ),
         );
     }
