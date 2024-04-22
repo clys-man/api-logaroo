@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Auth;
 
-use App\Http\Payloads\Auth\NewUser;
+use App\Http\DTO\Auth\NewUserDTO;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
@@ -62,9 +62,9 @@ class RegisterRequest extends FormRequest
         ];
     }
 
-    public function payload(): NewUser
+    public function payload(): NewUserDTO
     {
-        return NewUser::fromRequest(
+        return NewUserDTO::fromRequest(
             data: [
                 'name' => $this->string('name')->toString(),
                 'email' => $this->string('email')->toString(),

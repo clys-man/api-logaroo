@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Payloads\Auth;
+namespace App\Http\DTO\Auth;
 
-final readonly class NewUser
+final readonly class NewUserDTO
 {
     public function __construct(
         private string $name,
@@ -29,9 +29,9 @@ final readonly class NewUser
      * @param array{name:string,email:string,password:string} $data
      * @return NewUser
      */
-    public static function fromRequest(array $data): NewUser
+    public static function fromRequest(array $data): NewUserDTO
     {
-        return new NewUser(
+        return new NewUserDTO(
             name: $data['name'],
             email: $data['email'],
             password: $data['password'],

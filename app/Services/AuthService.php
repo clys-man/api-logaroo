@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Services;
 
-use App\Http\Payloads\Auth\NewUser;
+use App\Http\DTO\Auth\NewUserDTO;
 use App\Models\User;
 use App\Repositories\User\UserRepositoryInterface;
 use Illuminate\Contracts\Auth\Factory;
@@ -15,12 +15,11 @@ final readonly class AuthService
 {
     /**
      * @param Factory $auth
-     * @param CreateNewUser $user
-     * @param CreateTokenForUser $token
+     * @param UserRepositoryInterface $userRepository
      */
     public function __construct(
         private Factory $auth,
-        private UserRepositoryInterface $repository,
+        private UserRepositoryInterface $userRepository,
     ) {
     }
 
@@ -32,8 +31,7 @@ final readonly class AuthService
      */
     public function createToken(string $userId, string $name): NewAccessToken
     {
-
-        $user = $this->repository->find($userId);
+        $user = $this->userRepository->find($userId);
 
         return $user->createToken(
             $name
@@ -41,24 +39,24 @@ final readonly class AuthService
     }
 
     /**
-     * @param NewUser $payload
+     * @param NewUserDTO $payload
      * @return User
      * @throws Throwable
      */
-    public function createUser(NewUser $payload): User
+    public function createUser(NewUserDTO $payload): User
     {
-        return $this->repository->create(
+        return $this->userRepository->create(
             payload: $payload,
         );
     }
 
     /**
-     * @param NewUser $payload
+     * @param NewUserDTO $payload
      * @param string $name
      * @return NewAccessToken
      * @throws Throwable
      */
-    public function register(NewUser $payload, string $name): NewAccessToken
+    public function register(NewUserDTO $payload, string $name): NewAccessToken
     {
         $user = $this->createUser(
             payload: $payload,

@@ -2,7 +2,7 @@
 
 namespace App\Repositories\User;
 
-use App\Http\Payloads\Auth\NewUser;
+use App\Http\DTO\Auth\NewUserDTO;
 use App\Models\User;
 use Illuminate\Database\DatabaseManager;
 use Illuminate\Database\Eloquent\Collection;
@@ -25,7 +25,7 @@ class UserRepository implements UserRepositoryInterface
         return $this->model->query()->find($id);
     }
 
-    public function create(NewUser $payload): User
+    public function create(NewUserDTO $payload): User
     {
         return $this->model->query()->create($payload->toArray());
     }
