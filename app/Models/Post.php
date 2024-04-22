@@ -20,7 +20,12 @@ final class Post extends Model
     /** @var array<int,string>  */
     protected $fillable = [
         'title',
-        'content'
+        'content',
+        'user_id'
+    ];
+
+    protected $with = [
+        'author', 'tags'
     ];
 
     /**
@@ -30,7 +35,7 @@ final class Post extends Model
      * */
     public function author(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     /**

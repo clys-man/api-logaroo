@@ -4,13 +4,16 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use App\Models\Bookmark;
-use App\Models\User;
 use Illuminate\Database\Seeder;
 
 final class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
+        $this->call([
+            UserSeeder::class,
+            TagSeeder::class,
+            PostSeeder::class,
+        ]);
     }
 }

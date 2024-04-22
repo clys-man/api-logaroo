@@ -9,3 +9,9 @@ Route::middleware(['throttle:api'])->group(static function (): void {
         base_path('routes/api/auth.php'),
     );
 });
+
+Route::middleware(['auth:sanctum', 'throttle:api'])->group(static function (): void {
+    Route::prefix('posts')->as('post:')->group(
+        base_path('routes/api/posts.php'),
+    );
+});
