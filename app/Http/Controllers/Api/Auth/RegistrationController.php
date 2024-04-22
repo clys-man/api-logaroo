@@ -26,7 +26,7 @@ final readonly class RegistrationController
     {
         return new TokenResponse(
             data: $this->service->register(
-                payload: $request->payload(),
+                payload: $request->toDTO(),
                 name: (string) $request->userAgent(),
             ),
             status: Status::CREATED,
