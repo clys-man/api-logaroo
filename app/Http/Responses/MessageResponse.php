@@ -6,16 +6,19 @@ namespace App\Http\Responses;
 
 use App\Http\Responses\Concerns\HasResponse;
 use Illuminate\Contracts\Support\Responsable;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use JustSteveKing\Tools\Http\Enums\Status;
 
-final readonly class CollectionResponse implements Responsable
+final class MessageResponse implements Responsable
 {
     use HasResponse;
 
+    /**
+     * @param array{message:string} $data
+     * @param Status $status
+     */
     public function __construct(
-        protected AnonymousResourceCollection $data,
-        protected Status $status = Status::OK,
+        protected readonly array $data,
+        protected readonly Status $status = Status::OK,
     ) {
     }
 }
