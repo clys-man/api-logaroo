@@ -27,7 +27,7 @@ final readonly class NewUserDTO
 
     /**
      * @param array{name:string,email:string,password:string} $data
-     * @return NewUser
+     * @return NewUserDTO
      */
     public static function fromRequest(array $data): NewUserDTO
     {
