@@ -10,7 +10,7 @@ use App\Services\AuthService;
 use Illuminate\Contracts\Support\Responsable;
 use JustSteveKing\Tools\Http\Enums\Status;
 
-final readonly class RegisterController
+final readonly class RegistrationController
 {
     public function __construct(
         private AuthService $service,
