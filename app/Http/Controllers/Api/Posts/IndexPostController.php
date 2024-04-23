@@ -6,10 +6,7 @@ namespace App\Http\Controllers\Api\Posts;
 
 use App\Http\Resources\Posts\PostResource;
 use App\Http\Responses\CollectionResponse;
-use App\Models\Post;
-use App\Models\User;
 use App\Services\PostService;
-use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Http\Request;
 

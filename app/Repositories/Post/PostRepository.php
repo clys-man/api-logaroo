@@ -91,4 +91,9 @@ class PostRepository implements PostRepositoryInterface
             DB::rollBack();
         }
     }
+
+    public function delete(Post $post): bool
+    {
+        return $post->delete();
+    }
 }
