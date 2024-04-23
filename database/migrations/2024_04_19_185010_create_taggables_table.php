@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('taggables', function (Blueprint $table) {
             $table->id();
-            $table->foreignUuid('tag_id')
+            $table->foreignUlid('tag_id')
                 ->index()
                 ->constrained('tags')
                 ->cascadeOnDelete();
-            $table->uuidMorphs('taggable');
+            $table->ulidMorphs('taggable');
         });
     }
 

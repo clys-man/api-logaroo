@@ -13,4 +13,5 @@ interface PostRepositoryInterface
     public function paginate(int $perPage = 20, ?callable $callback = null): Paginator;
     public function find(string $id): ?Post;
     public function create(NewPostDTO $newPostDTO): Post;
+    public function update(Post $post, NewPostDTO $newPostDTO): Post;
 }

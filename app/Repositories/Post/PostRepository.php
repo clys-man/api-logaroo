@@ -65,4 +65,30 @@ class PostRepository implements PostRepositoryInterface
             DB::rollBack();
         }
     }
+
+    public function update(Post $post, NewPostDTO $newPostDTO): Post
+    {
+        DB::beginTransaction();
+
+        try {
+            /** @var Post */
+            $post = $post->fill([
+                'title' => $newPostDTO->title,
+                'content' => $newPostDTO->content,
+                'user_id' => $newPostDTO->userId
+            ]);
+
+            $ids = Tag::whereIn('name', $newPostDTO->tags)->pluck('id')->toArray();
+            $post->tags()->sync($ids);
+            $post->load(['tags', 'author']);
+            $post->save();
+
+            DB::commit();
+
+            return $post;
+        } catch (\Throwable $th) {
+            dd($th->getMessage());
+            DB::rollBack();
+        }
+    }
 }

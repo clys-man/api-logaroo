@@ -14,11 +14,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('posts', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->ulid('id')->primary();
             $table->string('title');
             $table->text('content');
 
-            $table->foreignUuid('user_id')
+            $table->foreignUlid('user_id')
                 ->index()
                 ->constrained('users');
 

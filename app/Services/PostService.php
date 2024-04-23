@@ -35,8 +35,11 @@ final readonly class PostService
 
     public function create(NewPostDTO $newPostDTO): Post
     {
-        $post = $this->repository->create($newPostDTO);
+        return $this->repository->create($newPostDTO);
+    }
 
-        return $post;
+    public function update(Post $post, NewPostDTO $newPostDTO): Post
+    {
+        return $this->repository->update(post: $post, newPostDTO: $newPostDTO);
     }
 }
