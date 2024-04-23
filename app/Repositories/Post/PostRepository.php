@@ -89,7 +89,6 @@ final class PostRepository implements PostRepositoryInterface
 
             return $post;
         } catch (Throwable $th) {
-            dd($th->getMessage());
             DB::rollBack();
         }
     }
