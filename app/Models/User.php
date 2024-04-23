@@ -15,6 +15,16 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 
+/**
+ * @property string $id
+ * @property string $name
+ * @property string $email
+ * @property string $password
+ * @property null|CarbonInterface $email_verified_at
+ * @property null|CarbonInterface $created_at
+ * @property null|CarbonInterface $updated_at
+ * @property Collection<Post> $posts
+ */
 final class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens;
@@ -45,6 +55,15 @@ final class User extends Authenticatable implements MustVerifyEmail
         'profile_photo_url',
     ];
 
+    /** @return array<string, string> */
+    protected function casts(): array
+    {
+        return [
+            'email_verified_at' => 'datetime',
+            'password' => 'hashed',
+        ];
+    }
+
     /**
      * User posts
      *
@@ -53,14 +72,5 @@ final class User extends Authenticatable implements MustVerifyEmail
     public function posts(): HasMany
     {
         return $this->hasMany(Post::class);
-    }
-
-    /** @return array<string, string> */
-    protected function casts(): array
-    {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
     }
 }
