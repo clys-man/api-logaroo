@@ -10,6 +10,8 @@ Esta API foi desenvolvida para fornecer funcionalidades de gerenciamento de post
 
 Disponivel em: https://app.swaggerhub.com/apis/Clys-man/docs.logaroo/1.0.0
 
+    Obs: Todas as requisições estão disponíveis no Insmonia, basta importar o aquivo ./docs/api-logaroo-insomnia.json
+
 ## Instalação
 
 A aplicação é executada de forma simples em ambiente docker.
