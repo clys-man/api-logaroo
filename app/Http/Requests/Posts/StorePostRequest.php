@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Requests\Posts;
 
 use App\Http\DTO\Posts\NewPostDTO;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StorePostRequest extends FormRequest
+final class StorePostRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repositories\User;
 
 use App\Http\DTO\Auth\NewUserDTO;
@@ -7,7 +9,7 @@ use App\Models\User;
 use Illuminate\Database\DatabaseManager;
 use Illuminate\Database\Eloquent\Collection;
 
-class UserRepository implements UserRepositoryInterface
+final class UserRepository implements UserRepositoryInterface
 {
     public function __construct(
         protected readonly User $model,

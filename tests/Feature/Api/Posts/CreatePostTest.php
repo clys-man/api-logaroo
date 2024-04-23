@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Models\Post;
 use App\Models\Tag;
 use App\Models\User;
@@ -8,7 +10,7 @@ use Laravel\Sanctum\Sanctum;
 
 uses(RefreshDatabase::class);
 
-it('creates a new post', function () {
+it('creates a new post', function (): void {
     $user = User::factory()->create();
     Sanctum::actingAs($user);
 
@@ -40,7 +42,7 @@ it('creates a new post', function () {
     }
 });
 
-it('returns error when required fields are missing', function () {
+it('returns error when required fields are missing', function (): void {
     $user = User::factory()->create();
     Sanctum::actingAs($user);
 

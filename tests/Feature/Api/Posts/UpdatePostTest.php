@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Models\Post;
 use App\Models\Tag;
 use App\Models\User;
@@ -8,7 +10,7 @@ use Laravel\Sanctum\Sanctum;
 
 uses(RefreshDatabase::class);
 
-it('updates an existing post', function () {
+it('updates an existing post', function (): void {
     $user = User::factory()->create();
     Sanctum::actingAs($user);
 
@@ -41,7 +43,7 @@ it('updates an existing post', function () {
     }
 });
 
-it('returns error when trying to update non-existing post', function () {
+it('returns error when trying to update non-existing post', function (): void {
     $user = User::factory()->create();
     Sanctum::actingAs($user);
 

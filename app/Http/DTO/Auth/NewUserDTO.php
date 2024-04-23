@@ -14,18 +14,6 @@ final readonly class NewUserDTO
     }
 
     /**
-     * @return array{name:string,email:string,password:string} $data
-     */
-    public function toArray(): array
-    {
-        return [
-            'name' => $this->name,
-            'email' => $this->email,
-            'password' => $this->password,
-        ];
-    }
-
-    /**
      * @param array{name:string,email:string,password:string} $data
      * @return NewUserDTO
      */
@@ -36,5 +24,17 @@ final readonly class NewUserDTO
             email: $data['email'],
             password: $data['password'],
         );
+    }
+
+    /**
+     * @return array{name:string,email:string,password:string} $data
+     */
+    public function toArray(): array
+    {
+        return [
+            'name' => $this->name,
+            'email' => $this->email,
+            'password' => $this->password,
+        ];
     }
 }

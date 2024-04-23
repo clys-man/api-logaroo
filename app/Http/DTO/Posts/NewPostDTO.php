@@ -15,19 +15,6 @@ final readonly class NewPostDTO
     }
 
     /**
-     * @return array{title:string,content:string,tags:array} $data
-     */
-    public function toArray(): array
-    {
-        return [
-            'title' => $this->title,
-            'content' => $this->content,
-            'tags' => $this->tags,
-            'user_id' => $this->userId,
-        ];
-    }
-
-    /**
      * @param array{title:string,content:string,tags:array,user_id:string} $data
      * @return NewPostDTO
      */
@@ -39,5 +26,18 @@ final readonly class NewPostDTO
             tags: $data['tags'],
             userId: $data['user_id'],
         );
+    }
+
+    /**
+     * @return array{title:string,content:string,tags:array} $data
+     */
+    public function toArray(): array
+    {
+        return [
+            'title' => $this->title,
+            'content' => $this->content,
+            'tags' => $this->tags,
+            'user_id' => $this->userId,
+        ];
     }
 }

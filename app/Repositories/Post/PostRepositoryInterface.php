@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repositories\Post;
 
 use App\Http\DTO\Posts\NewPostDTO;

@@ -26,7 +26,7 @@ final readonly class LoginController
      */
     public function __invoke(LoginRequest $request): Responsable
     {
-        if (!$this->auth->guard()->attempt($request->only('email', 'password'))) {
+        if ( ! $this->auth->guard()->attempt($request->only('email', 'password'))) {
             throw new AuthenticationException(
                 message: 'Failed authentication, please check your credentials.',
             );

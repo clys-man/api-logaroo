@@ -35,9 +35,9 @@ final readonly class UpdatePostController
      */
     public function __invoke(StorePostRequest $request, string $id): Responsable
     {
-        if (!$post = Post::query()->where('id', $id)->first()) {
+        if ( ! $post = Post::query()->where('id', $id)->first()) {
             throw new ModelNotFoundException(
-                message: "No post found for [$id]",
+                message: "No post found for [{$id}]",
                 code: Status::NOT_FOUND->value,
             );
         }

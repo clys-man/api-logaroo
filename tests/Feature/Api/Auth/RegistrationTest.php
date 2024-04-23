@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 uses(RefreshDatabase::class);
 
-test('register a new user', function () {
+test('register a new user', function (): void {
     $userData = [
         'name' => 'John Doe',
         'email' => 'john@example.com',

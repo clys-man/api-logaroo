@@ -10,7 +10,7 @@ final class SearchPostsByTagName
 {
     public function handle(Builder $query, string $tagName): Builder
     {
-        return $query->whereHas('tags', function (Builder $query) use ($tagName) {
+        return $query->whereHas('tags', function (Builder $query) use ($tagName): void {
             $query->where('name', $tagName);
         });
     }

@@ -4,11 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Api\Posts;
 
-use App\Http\Requests\Posts\StorePostRequest;
-use App\Http\Resources\Posts\PostResource;
 use App\Http\Responses\MessageResponse;
-use App\Http\Responses\ModelResponse;
-use App\Models\Post;
 use App\Models\User;
 use App\Queries\Posts\GetUserPostById;
 use App\Services\PostService;
@@ -36,13 +32,13 @@ final readonly class DeletePostController
      */
     public function __invoke(string $id): Responsable
     {
-        $post = (new GetUserPostById)
+        $post = (new GetUserPostById())
             ->handle(user: $this->auth, postId: $id)
             ->first();
 
-        if (!$post) {
+        if ( ! $post) {
             throw new ModelNotFoundException(
-                message: "No post found for [$id]",
+                message: "No post found for [{$id}]",
                 code: Status::NOT_FOUND->value,
             );
         }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -7,7 +9,7 @@ use Laravel\Sanctum\Sanctum;
 
 uses(RefreshDatabase::class);
 
-it('deletes a post', function () {
+it('deletes a post', function (): void {
     $user = User::factory()->create();
     Sanctum::actingAs($user);
 
@@ -18,7 +20,7 @@ it('deletes a post', function () {
     $response->assertStatus(204);
 });
 
-it('returns error when trying to delete non-existing post', function () {
+it('returns error when trying to delete non-existing post', function (): void {
     $user = User::factory()->create();
     Sanctum::actingAs($user);
 

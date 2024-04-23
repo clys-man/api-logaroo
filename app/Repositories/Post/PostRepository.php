@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repositories\Post;
 
 use App\Http\DTO\Posts\NewPostDTO;
@@ -8,15 +10,16 @@ use App\Models\Tag;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
+use Throwable;
 
-class PostRepository implements PostRepositoryInterface
+final class PostRepository implements PostRepositoryInterface
 {
     public function __construct(
         protected readonly Post $model,
     ) {
     }
 
-    public function all(?callable $callback = null): collection
+    public function all(?callable $callback = null): Collection
     {
         $query = $this->model->query();
 
@@ -61,7 +64,7 @@ class PostRepository implements PostRepositoryInterface
             DB::commit();
 
             return $post;
-        } catch (\Throwable $th) {
+        } catch (Throwable $th) {
             DB::rollBack();
         }
     }
@@ -86,7 +89,7 @@ class PostRepository implements PostRepositoryInterface
             DB::commit();
 
             return $post;
-        } catch (\Throwable $th) {
+        } catch (Throwable $th) {
             dd($th->getMessage());
             DB::rollBack();
         }

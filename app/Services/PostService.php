@@ -26,9 +26,9 @@ final readonly class PostService
     public function paginate(?string $tagName = null): Paginator
     {
         return $this->repository->paginate(
-            callback: function (Builder $query) use ($tagName) {
+            callback: function (Builder $query) use ($tagName): void {
                 if ($tagName) {
-                    (new SearchPostsByTagName)->handle($query, $tagName);
+                    (new SearchPostsByTagName())->handle($query, $tagName);
                 }
             }
         );
