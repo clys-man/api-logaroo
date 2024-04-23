@@ -58,8 +58,7 @@ final class PostRepository implements PostRepositoryInterface
                 'user_id' => $newPostDTO->userId
             ]);
 
-            $ids = Tag::whereIn('name', $newPostDTO->tags)->pluck('id')->toArray();
-            $post->tags()->sync($ids);
+            $this->syncPostTags($post, $newPostDTO->tags);
 
             DB::commit();
 
@@ -81,8 +80,8 @@ final class PostRepository implements PostRepositoryInterface
                 'user_id' => $newPostDTO->userId
             ]);
 
-            $ids = Tag::whereIn('name', $newPostDTO->tags)->pluck('id')->toArray();
-            $post->tags()->sync($ids);
+            $this->syncPostTags($post, $newPostDTO->tags);
+
             $post->load(['tags', 'author']);
             $post->save();
 
@@ -98,5 +97,15 @@ final class PostRepository implements PostRepositoryInterface
     public function delete(Post $post): bool
     {
         return $post->delete();
+    }
+
+    private function syncPostTags(Post $post, array $tags): void
+    {
+        $ids = [];
+        foreach ($tags as $tag) {
+            $ids[] = Tag::query()->firstOrCreate(['name' => $tag])->id;
+        }
+
+        $post->tags()->sync($ids);
     }
 }
